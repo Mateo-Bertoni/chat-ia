@@ -1,87 +1,258 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat IA</title>
-
+    <title>AutoPremium Montevideo | Concesionario oficial BMW</title>
+    <meta name="description" content="Concesionario oficial BMW en Montevideo. Vehículos 0km y usados.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-    <div class="app">
+    <header class="header">
+        <div class="contenedor">
+            <a href="index.html" class="logo" aria-label="AutoPremium, inicio"><span class="logo-emblema" aria-hidden="true">A</span><span><span class="logo-auto">Auto</span><span class="logo-premium">Premium</span></span></a>
 
-        <aside class="sidebar">
-            <h2>✦ Chat IA</h2>
+            <input type="checkbox" id="menu" class="menu-check">
+            <label for="menu" class="menu-boton" aria-label="Abrir menú"><span></span></label>
 
-            <button id="new-chat" class="new-chat">
-                + Nuevo chat
-            </button>
+            <nav class="nav">
+                <a href="index.html" class="activo">Inicio</a>
+                <a href="vehiculos.html">Vehículos</a>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="preguntas.html">Preguntas frecuentes</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="chatbot.html" class="nav-chat">Chatbot</a>
+            </nav>
+        </div>
+    </header>
 
-            <p class="sidebar-label">Tus conversaciones</p>
-
-            <div id="chat-history"></div>
-
-            <div class="sidebar-footer">
-                Proyecto de aprendizaje
+    <main>
+        <section class="hero">
+            <div class="contenedor">
+                <div class="hero-contenido">
+                    <span class="insignia"><span class="punto-vivo"></span> Concesionario oficial BMW</span>
+                    <h1>Manejá lo que soñaste con <span class="texto-oro">AutoPremium</span></h1>
+                    <p>Vehículos BMW 0km y usados seleccionados de distintas marcas, con financiación, garantía y el respaldo de un concesionario oficial en Montevideo.</p>
+                    <div class="hero-botones">
+                        <a href="vehiculos.html" class="btn btn-oro">Ver vehículos</a>
+                        <a href="chatbot.html" class="btn btn-borde">Hablar con el chatbot</a>
+                    </div>
+                </div>
             </div>
-        </aside>
+        </section>
 
-        <main class="chat">
+        <section class="contenedor">
+            <div class="datos">
+                <div class="dato revelar"><strong>16</strong><span>vehículos en stock</span></div>
+                <div class="dato revelar"><strong>48</strong><span>cuotas de financiación</span></div>
+                <div class="dato revelar"><strong>1 año</strong><span>de garantía de fábrica en 0km</span></div>
+                <div class="dato revelar"><strong>Toda marca</strong><span>aceptamos tu usado</span></div>
+            </div>
+        </section>
 
-            <header class="chat-header">
-                <div class="avatar">✦</div>
+        <section class="seccion">
+            <div class="contenedor">
+                <div class="encabezado-seccion revelar">
+                    <span class="etiqueta">Destacados</span>
+                    <div class="linea-oro"></div>
+                    <h2 class="titulo">Nuevos <span class="oro">0km</span> que te van a encantar</h2>
+                    <p class="subtitulo">Una selección de nuestros BMW modelo 2026, desde el sedán ideal para todos los días hasta los deportivos M.</p>
+                </div>
+                <div class="grilla-autos">
+            <article class="auto revelar">
+                <div class="auto-foto">
+                    <span class="sin-foto">Foto: img/bmw-serie3-320i-0km.jpg</span>
+                    <img src="img/BMW_Serie_3_(320i).jpg" alt="BMW Serie 3 320i" loading="lazy" onerror="this.remove()">
+                    <span class="chapa chapa-nuevo">0 km</span>
+                </div>
+                <div class="auto-info">
+                    <span class="auto-marca">BMW</span>
+                    <h3 class="auto-nombre">BMW Serie 3 320i</h3>
+                    <span class="auto-tipo">Sedán</span>
+                    <div class="auto-detalles">
+                        <span>Año 2026</span>
+                        <span>0 km</span>
+                    </div>
+                    <p class="auto-colores">Colores: Blanco Alpino, Negro Zafiro, Azul Portimao, Gris Mineral</p>
+                    <div class="auto-precio">
+                        <div>
+                            <small>Desde</small>
+                            <strong>USD 52.300</strong>
+                        </div>
+                        <span class="auto-stock">Stock: 3 unidades</span>
+                    </div>
+                </div>
+            </article>
+            <article class="auto revelar">
+                <div class="auto-foto">
+                    <span class="sin-foto">Foto: img/bmw-x3-xdrive30i-0km.jpg</span>
+                    <img src="img/BMW_X3_(xDrive30i).webp" alt="BMW X3 xDrive30i" loading="lazy" onerror="this.remove()">
+                    <span class="chapa chapa-nuevo">0 km</span>
+                </div>
+                <div class="auto-info">
+                    <span class="auto-marca">BMW</span>
+                    <h3 class="auto-nombre">BMW X3 xDrive30i</h3>
+                    <span class="auto-tipo">SUV mediana</span>
+                    <div class="auto-detalles">
+                        <span>Año 2026</span>
+                        <span>0 km</span>
+                    </div>
+                    <p class="auto-colores">Colores: Negro Zafiro, Blanco Alpino, Gris Mineral, Azul Phytonic</p>
+                    <div class="auto-precio">
+                        <div>
+                            <small>Desde</small>
+                            <strong>USD 68.500</strong>
+                        </div>
+                        <span class="auto-stock">Stock: 3 unidades</span>
+                    </div>
+                </div>
+            </article>
+            <article class="auto revelar">
+                <div class="auto-foto">
+                    <span class="sin-foto">Foto: img/bmw-m3-competition-0km.jpg</span>
+                    <img src="img/BMW_M3_Competition.jpg" alt="BMW M3 Competition" loading="lazy" onerror="this.remove()">
+                    <span class="chapa chapa-nuevo">0 km</span>
+                    <span class="chapa chapa-m">Serie M</span>
+                </div>
+                <div class="auto-info">
+                    <span class="auto-marca">BMW</span>
+                    <h3 class="auto-nombre">BMW M3 Competition</h3>
+                    <span class="auto-tipo">Sedán deportivo</span>
+                    <div class="auto-detalles">
+                        <span>Año 2026</span>
+                        <span>0 km</span>
+                    </div>
+                    <p class="auto-colores">Colores: Verde Isle of Man, Azul Portimao, Negro Zafiro, Blanco Alpino</p>
+                    <div class="auto-precio">
+                        <div>
+                            <small>Desde</small>
+                            <strong>USD 139.900</strong>
+                        </div>
+                        <span class="auto-stock">Stock: 2 unidades</span>
+                    </div>
+                </div>
+            </article>
+            <article class="auto revelar">
+                <div class="auto-foto">
+                    <span class="sin-foto">Foto: img/bmw-m8-competition-0km.jpg</span>
+                    <img src="img/BMW_M8_Competition_Coupe.jpeg" alt="BMW M8 Competition Coupé" loading="lazy" onerror="this.remove()">
+                    <span class="chapa chapa-nuevo">0 km</span>
+                    <span class="chapa chapa-m">Serie M</span>
+                </div>
+                <div class="auto-info">
+                    <span class="auto-marca">BMW</span>
+                    <h3 class="auto-nombre">BMW M8 Competition Coupé</h3>
+                    <span class="auto-tipo">Coupé deportivo</span>
+                    <div class="auto-detalles">
+                        <span>Año 2026</span>
+                        <span>0 km</span>
+                    </div>
+                    <p class="auto-colores">Colores: Azul Marina Bay, Gris Brands Hatch, Negro Zafiro</p>
+                    <div class="auto-precio">
+                        <div>
+                            <small>Desde</small>
+                            <strong>USD 214.900</strong>
+                        </div>
+                        <span class="auto-stock">Stock: 1 unidad</span>
+                    </div>
+                </div>
+            </article>
+                </div>
+                <div class="filtros revelar">
+                    <a href="vehiculos.html">Ver todos los vehículos →</a>
+                </div>
+            </div>
+        </section>
 
+        <section class="seccion seccion-gris">
+            <div class="contenedor">
+                <div class="encabezado-seccion revelar">
+                    <span class="etiqueta">Servicios</span>
+                    <div class="linea-oro"></div>
+                    <h2 class="titulo">Todo lo que necesitás, <span class="oro">en un solo lugar</span></h2>
+                    <p class="subtitulo">Te acompañamos antes, durante y después de la compra.</p>
+                </div>
+            <div class="grilla-servicios">
+                <div class="servicio revelar">
+                    <div class="icono"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></div>
+                    <h3>Financiación</h3>
+                    <p>Financiación propia o con BROU y Santander, en hasta 48 cuotas, sujeta a evaluación crediticia.</p>
+                </div>
+                <div class="servicio revelar">
+                    <div class="icono"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg></div>
+                    <h3>Tu usado como parte de pago</h3>
+                    <p>Recibimos usados de cualquier marca como parte de pago, previa tasación en el local.</p>
+                </div>
+                <div class="servicio revelar">
+                    <div class="icono"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></div>
+                    <h3>Service y repuestos</h3>
+                    <p>Turnos de service de lunes a viernes de 8:00 a 17:00 hs y repuestos originales BMW.</p>
+                </div>
+                <div class="servicio revelar">
+                    <div class="icono"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M12 3v7M5 16l5-3M19 16l-5-3"/></svg></div>
+                    <h3>Test drive</h3>
+                    <p>Probá el auto que te gusta. Coordinalo por teléfono dentro del horario de atención.</p>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section class="seccion">
+            <div class="contenedor">
+                <div class="cta revelar">
+                    <div>
+                        <h2>¿Tenés dudas? Preguntale a nuestro chatbot</h2>
+                        <p>Te ayuda a encontrar tu próximo auto, te cuenta sobre financiación, garantías y service, y te pasa el contacto para coordinar lo que necesites. Disponible a toda hora.</p>
+                    </div>
+                    <a href="chatbot.html" class="btn btn-oro">Abrir el chatbot</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="contenedor">
+            <div class="footer-grilla">
                 <div>
-                    <h1>Asistente IA</h1>
-                    <span class="status">Tu asistente personal</span>
+                    <a href="index.html" class="logo"><span class="logo-emblema" aria-hidden="true">A</span><span><span class="logo-auto">Auto</span><span class="logo-premium">Premium</span></span></a>
+                    <p>Concesionario oficial BMW en Montevideo. Vehículos 0km y usados de BMW y de otras marcas.</p>
                 </div>
-            </header>
-
-            <section
-                id="messages"
-                class="messages"
-                aria-live="polite"
-                aria-label="Conversación"
-            >
-                <div class="welcome">
-                    <div class="welcome-icon">✦</div>
-
-                    <h2>¿En qué puedo ayudarte?</h2>
-
-                    <p>
-                        Escribí tu pregunta y comencemos
-                        una conversación.
-                    </p>
+                <div>
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="vehiculos.html">Vehículos</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="preguntas.html">Preguntas frecuentes</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="chatbot.html">Chatbot</a></li>
+                    </ul>
                 </div>
-            </section>
+                <div>
+                    <h4>Horarios</h4>
+                    <ul>
+                        <li>Lunes a viernes: 9:00 a 18:00 hs</li>
+                        <li>Sábados: 9:00 a 15:00 hs</li>
+                        <li>Domingos y feriados: cerrado</li>
+                        <li>Service: lunes a viernes de 8:00 a 17:00 hs</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="tel:26001234">Tel. 2600 1234</a></li>
+                        <li>Av. Italia 5234, Montevideo</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-final">© 2026 AutoPremium Montevideo. Proyecto académico, UTU.</div>
+        </div>
+    </footer>
 
-            <form id="chat-form" class="chat-form">
-                <label class="sr-only" for="message-input">
-                    Escribí tu mensaje
-                </label>
-
-                <input
-                    type="text"
-                    id="message-input"
-                    placeholder="Escribí un mensaje..."
-                    autocomplete="off"
-                    required
-                >
-
-                <button type="submit" id="send-button">
-                    Enviar
-                </button>
-            </form>
-
-            <p class="disclaimer">
-                La IA puede cometer errores. Verificá la información.
-            </p>
-
-        </main>
-    </div>
-
-    <script src="js/app.js"></script>
+    <script src="js/animaciones.js"></script>
 </body>
 </html>

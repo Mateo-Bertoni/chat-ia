@@ -91,12 +91,18 @@ chatForm.addEventListener("submit", async (event) => {
 newChatButton.addEventListener("click", () => {
     messagesContainer.innerHTML = `
         <div class="welcome">
-            <div class="welcome-icon">✦</div>
-            <h2>¿En qué puedo ayudarte?</h2>
+            <div class="welcome-icon">A</div>
+            <h2>¡Hola! ¿En qué te puedo ayudar?</h2>
             <p>
-                Escribí tu pregunta y comencemos
-                una conversación.
+                Preguntame por nuestros 0km y usados, financiación,
+                garantías, service o cómo coordinar un test drive.
             </p>
+            <div class="sugerencias">
+                <button type="button" class="sugerencia">¿Qué usados tienen a la venta?</button>
+                <button type="button" class="sugerencia">¿Qué camionetas 0km tienen?</button>
+                <button type="button" class="sugerencia">¿Cómo es la financiación?</button>
+                <button type="button" class="sugerencia">¿Reciben autos usados como parte de pago?</button>
+            </div>
         </div>
     `;
 

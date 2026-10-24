@@ -1,5 +1,28 @@
+/* =========================================================
+   AutoPremium Montevideo - Hoja de estilos
+   Colores: azul BMW, blanco, negro y oro AutoPremium
+   ========================================================= */
 
-/* 1. Configuración general */
+/* 1. Variables y configuración general */
+
+:root {
+    --oro: #FFD700;
+    --oro-suave: rgba(255, 215, 0, 0.15);
+    --oro-brillo: rgba(255, 215, 0, 0.45);
+    --azul: #0066B1;
+    --azul-claro: #1C69D4;
+    --azul-oscuro: #0A2A52;
+    --negro: #0B0C0F;
+    --negro-2: #14161B;
+    --negro-3: #1D2027;
+    --gris: #9AA0AB;
+    --gris-claro: #D9DCE2;
+    --blanco: #FFFFFF;
+    --radio: 16px;
+    --sombra: 0 18px 40px rgba(0, 0, 0, 0.35);
+    --transicion: 0.35s cubic-bezier(.2, .8, .2, 1);
+    --alto-header: 72px;
+}
 
 * {
     box-sizing: border-box;
@@ -7,10 +30,25 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #202123;
-    background: #f5f5f7;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    color: var(--blanco);
+    background: var(--negro);
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
 }
 
 button,
@@ -22,105 +60,1337 @@ button {
     cursor: pointer;
 }
 
-/* 2. Estructura principal */
-
-.app {
-    display: flex;
-    height: 100vh;
-    height: 100dvh;
-    overflow: hidden;
+::selection {
+    background: var(--oro);
+    color: var(--negro);
 }
 
-/* 3. Barra lateral */
+.contenedor {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+}
 
-.sidebar {
-    width: 260px;
-    flex-shrink: 0;
-    background: #202123;
-    color: white;
-    padding: 24px 16px;
+/* 2. Logo */
+
+.logo {
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-auto {
+    color: var(--blanco);
+}
+
+.logo-premium {
+    color: var(--oro);
+    text-shadow: 0 0 18px var(--oro-brillo);
+}
+
+.logo-emblema {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid var(--oro);
+    background: radial-gradient(circle at 30% 30%, var(--azul-claro), var(--azul-oscuro));
+    box-shadow: 0 0 14px var(--oro-brillo);
+    display: grid;
+    place-items: center;
+    color: var(--oro);
+    font-size: 16px;
+    font-weight: 800;
+    transition: transform 0.8s ease;
+}
+
+.logo:hover .logo-emblema {
+    transform: rotate(360deg);
+}
+
+/* 3. Cabecera y navegación */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--alto-header);
+    background: rgba(11, 12, 15, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.18);
+}
+
+.header .contenedor {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav a {
+    position: relative;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gris-claro);
+    transition: color var(--transicion);
+}
+
+.nav a::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 2px;
+    height: 2px;
+    background: var(--oro);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transicion);
+}
+
+.nav a:hover,
+.nav a.activo {
+    color: var(--oro);
+}
+
+.nav a:hover::after,
+.nav a.activo::after {
+    transform: scaleX(1);
+}
+
+.nav a.nav-chat {
+    margin-left: 8px;
+    border: 1px solid var(--oro);
+    border-radius: 999px;
+    color: var(--oro);
+}
+
+.nav a.nav-chat::after {
+    display: none;
+}
+
+.nav a.nav-chat:hover,
+.nav a.nav-chat.activo {
+    background: var(--oro);
+    color: var(--negro);
+    box-shadow: 0 0 20px var(--oro-brillo);
+}
+
+/* Menú para celulares */
+
+.menu-check {
+    display: none;
+}
+
+.menu-boton {
+    display: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    cursor: pointer;
+    place-items: center;
+}
+
+.menu-boton span,
+.menu-boton span::before,
+.menu-boton span::after {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--oro);
+    position: relative;
+    transition: var(--transicion);
+}
+
+.menu-boton span::before,
+.menu-boton span::after {
+    content: "";
+    position: absolute;
+}
+
+.menu-boton span::before {
+    top: -6px;
+}
+
+.menu-boton span::after {
+    top: 6px;
+}
+
+/* 4. Botones */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transicion), box-shadow var(--transicion), background var(--transicion), color var(--transicion);
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.7s ease;
+}
+
+.btn:hover::before {
+    left: 130%;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn-oro {
+    background: var(--oro);
+    color: var(--negro);
+    box-shadow: 0 8px 24px rgba(255, 215, 0, 0.25);
+}
+
+.btn-oro:hover {
+    box-shadow: 0 12px 34px rgba(255, 215, 0, 0.5);
+}
+
+.btn-azul {
+    background: var(--azul);
+    color: var(--blanco);
+}
+
+.btn-azul:hover {
+    background: var(--azul-claro);
+    box-shadow: 0 12px 30px rgba(28, 105, 212, 0.45);
+}
+
+.btn-borde {
+    border-color: var(--blanco);
+    color: var(--blanco);
+}
+
+.btn-borde:hover {
+    border-color: var(--oro);
+    color: var(--oro);
+}
+
+/* 5. Secciones generales */
+
+.seccion {
+    padding: 90px 0;
+}
+
+.seccion-clara {
+    background: var(--blanco);
+    color: var(--negro);
+}
+
+.seccion-gris {
+    background: var(--negro-2);
+}
+
+.etiqueta {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 12px;
+}
+
+.seccion-clara .etiqueta {
+    color: var(--azul);
+}
+
+.titulo {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+.titulo .oro {
+    color: var(--oro);
+}
+
+.seccion-clara .titulo .oro {
+    color: var(--azul);
+}
+
+.subtitulo {
+    color: var(--gris);
+    max-width: 640px;
+    margin-bottom: 44px;
+}
+
+.seccion-clara .subtitulo {
+    color: #5B6270;
+}
+
+.encabezado-seccion {
+    text-align: center;
+}
+
+.encabezado-seccion .subtitulo {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.linea-oro {
+    width: 70px;
+    height: 3px;
+    margin: 0 auto 18px;
+    background: linear-gradient(90deg, transparent, var(--oro), transparent);
+    background-size: 200% 100%;
+    animation: brillo-linea 3s linear infinite;
+}
+
+@keyframes brillo-linea {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+}
+
+/* 6. Hero de la página principal */
+
+.hero {
+    position: relative;
+    min-height: calc(100vh - var(--alto-header));
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background:
+        linear-gradient(100deg, rgba(11, 12, 15, 0.96) 30%, rgba(11, 12, 15, 0.55) 70%, rgba(10, 42, 82, 0.6)),
+        url("../img/hero.jpg") center / cover no-repeat,
+        radial-gradient(circle at 75% 40%, var(--azul-oscuro), var(--negro) 65%);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    right: -150px;
+    top: -150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.18), transparent 65%);
+    animation: flotar 8s ease-in-out infinite;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--azul), var(--oro), var(--azul));
+    background-size: 200% 100%;
+    animation: brillo-linea 6s linear infinite;
+}
+
+@keyframes flotar {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-40px, 40px); }
+}
+
+.hero-contenido {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    padding: 60px 0;
+}
+
+.hero h1 {
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 22px;
+}
+
+.texto-oro {
+    background: linear-gradient(90deg, #E6B800, var(--oro), #FFF3A6, var(--oro), #E6B800);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: brillo-texto 4s linear infinite;
+}
+
+@keyframes brillo-texto {
+    to { background-position: 200% center; }
+}
+
+.hero p {
+    color: var(--gris-claro);
+    font-size: 18px;
+    margin-bottom: 34px;
+}
+
+.hero-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.insignia {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    margin-bottom: 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    background: var(--oro-suave);
+    color: var(--oro);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.punto-vivo {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--oro);
+    animation: latido 1.8s ease-in-out infinite;
+}
+
+@keyframes latido {
+    0% { box-shadow: 0 0 0 0 var(--oro-brillo); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+}
+
+/* Banner de páginas internas */
+
+.banner {
+    position: relative;
+    padding: 90px 0 70px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 0%, var(--azul-oscuro), var(--negro) 70%);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.18);
+}
+
+.banner h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.banner p {
+    color: var(--gris-claro);
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+/* 7. Barra de datos destacados */
+
+.datos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: -50px;
+    position: relative;
+    z-index: 2;
+}
+
+.dato {
+    background: var(--negro-2);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: var(--radio);
+    padding: 26px 22px;
+    text-align: center;
+    transition: transform var(--transicion), border-color var(--transicion), box-shadow var(--transicion);
+}
+
+.dato:hover {
+    transform: translateY(-6px);
+    border-color: var(--oro);
+    box-shadow: 0 14px 30px rgba(255, 215, 0, 0.15);
+}
+
+.dato strong {
+    display: block;
+    font-size: 28px;
+    color: var(--oro);
+    font-weight: 800;
+}
+
+.dato span {
+    color: var(--gris);
+    font-size: 14px;
+}
+
+/* 8. Tarjetas de autos */
+
+.grilla-autos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 26px;
+}
+
+.auto {
+    position: relative;
     display: flex;
     flex-direction: column;
+    background: var(--negro-2);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: var(--radio);
+    overflow: hidden;
+    transition: transform var(--transicion), box-shadow var(--transicion), border-color var(--transicion);
+}
+
+.seccion-clara .auto {
+    background: var(--blanco);
+    border-color: #E6E8EC;
+    color: var(--negro);
+}
+
+.auto:hover {
+    transform: translateY(-10px);
+    border-color: var(--oro);
+    box-shadow: 0 22px 44px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--oro), 0 0 30px rgba(255, 215, 0, 0.18);
+}
+
+.auto-foto {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--negro-3), var(--azul-oscuro));
+    display: grid;
+    place-items: center;
+}
+
+.auto-foto .sin-foto {
+    color: var(--gris);
+    font-size: 13px;
+    text-align: center;
+    padding: 0 16px;
+}
+
+.auto-foto img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(.2, .8, .2, 1);
+}
+
+.auto:hover .auto-foto img {
+    transform: scale(1.08);
+}
+
+.auto-foto::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 215, 0, 0.25) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.9s ease;
+}
+
+.auto:hover .auto-foto::after {
+    transform: translateX(100%);
+}
+
+.chapa {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 1;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.chapa-nuevo {
+    background: var(--azul);
+    color: var(--blanco);
+}
+
+.chapa-usado {
+    background: var(--oro);
+    color: var(--negro);
+}
+
+.chapa-m {
+    left: auto;
+    right: 14px;
+    background: var(--negro);
+    color: var(--oro);
+    border: 1px solid var(--oro);
+}
+
+.auto-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px 22px 22px;
+}
+
+.auto-marca {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gris);
+}
+
+.auto-nombre {
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.3;
+    transition: color var(--transicion);
+}
+
+.auto:hover .auto-nombre {
+    color: var(--oro);
+}
+
+.seccion-clara .auto:hover .auto-nombre {
+    color: var(--azul);
+}
+
+.auto-tipo {
+    color: var(--gris);
+    font-size: 14px;
+}
+
+.auto-detalles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 8px 0 4px;
+}
+
+.auto-detalles span {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.seccion-clara .auto-detalles span {
+    background: #F1F3F6;
+}
+
+.auto-colores {
+    color: var(--gris);
+    font-size: 13px;
+}
+
+.auto-precio {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.seccion-clara .auto-precio {
+    border-color: #E6E8EC;
+}
+
+.auto-precio {
+    display: block;
+}
+
+.auto-precio strong {
+    white-space: nowrap;
+}
+
+.auto-precio small {
+    display: block;
+    color: var(--gris);
+    font-size: 12px;
+}
+
+.auto-precio strong {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--oro);
+}
+
+.seccion-clara .auto-precio strong {
+    color: var(--azul);
+}
+
+.auto-stock {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--gris);
+}
+
+/* Filtros del catálogo */
+
+.filtros {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.filtros a {
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-weight: 600;
+    font-size: 14px;
+    transition: var(--transicion);
+}
+
+.filtros a:hover {
+    border-color: var(--oro);
+    color: var(--oro);
+    transform: translateY(-2px);
+}
+
+.bloque-catalogo {
+    scroll-margin-top: calc(var(--alto-header) + 20px);
+}
+
+.bloque-catalogo + .bloque-catalogo {
+    margin-top: 80px;
+}
+
+.titulo-bloque {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.titulo-bloque::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--oro), transparent);
+}
+
+.titulo-bloque span {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gris);
+}
+
+/* 9. Servicios */
+
+.grilla-servicios {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
 }
 
+.servicio {
+    padding: 32px 26px;
+    border-radius: var(--radio);
+    background: var(--negro-2);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transicion), border-color var(--transicion);
+}
+
+.servicio::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(0, 102, 177, 0.35), transparent 60%);
+    opacity: 0;
+    transition: opacity var(--transicion);
+}
+
+.servicio:hover {
+    transform: translateY(-8px);
+    border-color: var(--oro);
+}
+
+.servicio:hover::before {
+    opacity: 1;
+}
+
+.servicio > * {
+    position: relative;
+}
+
+.icono {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 20px;
+    background: var(--oro-suave);
+    border: 1px solid rgba(255, 215, 0, 0.35);
+    transition: transform var(--transicion), background var(--transicion);
+}
+
+.icono svg {
+    width: 26px;
+    height: 26px;
+    stroke: var(--oro);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke var(--transicion);
+}
+
+.servicio:hover .icono,
+.tarjeta:hover .icono {
+    transform: rotate(-8deg) scale(1.1);
+    background: var(--oro);
+}
+
+.servicio:hover .icono svg,
+.tarjeta:hover .icono svg {
+    stroke: var(--negro);
+}
+
+.servicio h3,
+.tarjeta h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.servicio p,
+.tarjeta p {
+    color: var(--gris);
+    font-size: 15px;
+}
+
+/* 10. Llamado al chatbot */
+
+.cta {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    padding: 60px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    background: linear-gradient(120deg, var(--azul-oscuro), var(--azul) 60%, var(--azul-claro));
+    border: 1px solid rgba(255, 215, 0, 0.35);
+}
+
+.cta::before {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    right: -100px;
+    top: -140px;
+    border-radius: 50%;
+    border: 40px solid rgba(255, 215, 0, 0.12);
+    animation: girar 18s linear infinite;
+}
+
+@keyframes girar {
+    to { transform: rotate(360deg); }
+}
+
+.cta > * {
+    position: relative;
+}
+
+.cta h2 {
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.cta p {
+    color: #DCE8F7;
+    max-width: 560px;
+}
+
+/* 11. Tarjetas generales (nosotros, contacto) */
+
+.grilla-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.grilla-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.tarjeta {
+    padding: 32px 28px;
+    border-radius: var(--radio);
+    background: var(--negro-2);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    transition: transform var(--transicion), border-color var(--transicion), box-shadow var(--transicion);
+}
+
+.tarjeta:hover {
+    transform: translateY(-8px);
+    border-color: var(--oro);
+    box-shadow: 0 16px 36px rgba(255, 215, 0, 0.12);
+}
+
+.tarjeta a {
+    color: var(--oro);
+    font-weight: 700;
+}
+
+.tarjeta a:hover {
+    text-decoration: underline;
+}
+
+.texto-largo p {
+    color: var(--gris-claro);
+    margin-bottom: 18px;
+}
+
+.seccion-clara .texto-largo p {
+    color: #3C4250;
+}
+
+.marco {
+    position: relative;
+    border-radius: 24px;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--negro-3), var(--azul-oscuro));
+    border: 1px solid rgba(255, 215, 0, 0.35);
+    box-shadow: 20px 20px 0 -2px var(--oro-suave);
+    transition: transform var(--transicion), box-shadow var(--transicion);
+}
+
+.marco:hover {
+    transform: translate(-6px, -6px);
+    box-shadow: 26px 26px 0 -2px rgba(255, 215, 0, 0.35);
+}
+
+.marco img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.marco .sin-foto {
+    color: var(--gris);
+    font-size: 14px;
+}
+
+.lista-check {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.lista-check li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.lista-check li::before {
+    content: "✓";
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+    font-weight: 800;
+    background: var(--oro);
+    color: var(--negro);
+}
+
+/* Horarios */
+
+.tabla-horarios {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.tabla-horarios td {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tabla-horarios td:last-child {
+    text-align: right;
+    font-weight: 700;
+    color: var(--oro);
+}
+
+.mapa {
+    width: 100%;
+    height: 380px;
+    border: 0;
+    border-radius: var(--radio);
+    filter: grayscale(0.4) contrast(1.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    transition: filter var(--transicion);
+}
+
+.mapa:hover {
+    filter: none;
+}
+
+/* 12. Preguntas frecuentes */
+
+.faq {
+    max-width: 820px;
+    margin: 0 auto;
+    display: grid;
+    gap: 14px;
+}
+
+.faq details {
+    border-radius: 14px;
+    background: var(--negro-2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+
+.faq details:hover,
+.faq details[open] {
+    border-color: var(--oro);
+    box-shadow: 0 0 24px rgba(255, 215, 0, 0.1);
+}
+
+.faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 24px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.faq summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq summary::after {
+    content: "+";
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: var(--oro);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    transition: transform var(--transicion), background var(--transicion), color var(--transicion);
+}
+
+.faq details[open] summary::after {
+    transform: rotate(45deg);
+    background: var(--oro);
+    color: var(--negro);
+}
+
+.faq details p {
+    padding: 0 24px 22px;
+    color: var(--gris-claro);
+    animation: aparecer-arriba 0.4s ease;
+}
+
+@keyframes aparecer-arriba {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: none; }
+}
+
+/* 13. Pie de página */
+
+.footer {
+    background: #07080A;
+    border-top: 1px solid rgba(255, 215, 0, 0.18);
+    padding: 60px 0 24px;
+    color: var(--gris);
+    font-size: 14px;
+}
+
+.footer-grilla {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer h4 {
+    color: var(--blanco);
+    font-size: 15px;
+    margin-bottom: 14px;
+}
+
+.footer ul {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+}
+
+.footer a {
+    transition: color var(--transicion), padding var(--transicion);
+}
+
+.footer a:hover {
+    color: var(--oro);
+    padding-left: 4px;
+}
+
+.footer .logo {
+    margin-bottom: 14px;
+}
+
+.footer-final {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+    font-size: 13px;
+}
+
+/* 14. Animación al hacer scroll */
+
+.revelar {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.2, .8, .2, 1);
+}
+
+.revelar.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* =========================================================
+   15. Página del chatbot
+   (se mantienen los id y clases que usa js/app.js)
+   ========================================================= */
+
+.pagina-chat {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.pagina-chat .header {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.app {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 270px;
+    flex-shrink: 0;
+    background: var(--negro-2);
+    border-right: 1px solid rgba(255, 215, 0, 0.15);
+    color: var(--blanco);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
 .sidebar h2 {
-    font-size: 22px;
+    font-size: 20px;
+}
+
+.sidebar h2 .logo-premium {
+    font-weight: 800;
 }
 
 .new-chat {
-    padding: 12px;
-    border: 1px solid #55565a;
-    border-radius: 8px;
-    color: white;
+    padding: 12px 16px;
+    border: 1px solid var(--oro);
+    border-radius: 12px;
+    color: var(--oro);
     background: transparent;
     text-align: left;
+    font-weight: 700;
+    transition: background var(--transicion), color var(--transicion), box-shadow var(--transicion), transform var(--transicion);
 }
 
 .new-chat:hover {
-    background: #343539;
+    background: var(--oro);
+    color: var(--negro);
+    box-shadow: 0 0 22px var(--oro-brillo);
+    transform: translateY(-2px);
 }
 
 .sidebar-label {
-    color: #a6a6a6;
+    color: var(--gris);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+#chat-history {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-y: auto;
+}
+
+#chat-history > * {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--gris-claro);
+    text-align: left;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: var(--transicion);
+}
+
+#chat-history > *:hover,
+#chat-history > .active,
+#chat-history > .activo {
+    background: rgba(0, 102, 177, 0.25);
+    border-color: rgba(28, 105, 212, 0.6);
+    color: var(--blanco);
+}
+
+.sidebar-info {
+    padding: 16px;
+    border-radius: 12px;
+    background: rgba(0, 102, 177, 0.15);
+    border: 1px solid rgba(28, 105, 212, 0.35);
     font-size: 13px;
+    color: var(--gris-claro);
+}
+
+.sidebar-info strong {
+    display: block;
+    color: var(--oro);
+    margin-bottom: 4px;
 }
 
 .sidebar-footer {
     margin-top: auto;
-    color: #a6a6a6;
+    color: var(--gris);
     font-size: 12px;
 }
-
-/* 4. Área del chat */
 
 .chat {
     flex: 1;
     min-width: 0;
     display: flex;
     flex-direction: column;
-    background: #ffffff;
+    background:
+        radial-gradient(circle at 85% 0%, rgba(0, 102, 177, 0.25), transparent 45%),
+        radial-gradient(circle at 0% 100%, rgba(255, 215, 0, 0.07), transparent 40%),
+        var(--negro);
 }
 
 .chat-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 18px 28px;
-    border-bottom: 1px solid #eeeeee;
+    gap: 14px;
+    padding: 16px 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(20, 22, 27, 0.6);
 }
 
 .chat-header h1 {
     font-size: 17px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .status {
-    color: #777777;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gris);
     font-size: 13px;
+}
+
+.status::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2ECC71;
+    box-shadow: 0 0 10px #2ECC71;
 }
 
 .avatar,
 .welcome-icon {
     display: grid;
     place-items: center;
-    background: #eee8ff;
-    color: #7052c8;
     border-radius: 50%;
+    background: linear-gradient(135deg, var(--azul), var(--azul-oscuro));
+    color: var(--oro);
+    border: 2px solid var(--oro);
+    font-weight: 800;
 }
 
 .avatar {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
+    box-shadow: 0 0 16px var(--oro-brillo);
 }
-
-/* 5. Mensajes */
 
 .messages {
     flex: 1;
     min-height: 0;
     overflow-y: auto;
-    padding: 32px max(24px, calc((100% - 760px) / 2));
+    padding: 32px max(24px, calc((100% - 780px) / 2));
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 215, 0, 0.4) transparent;
 }
 
 .welcome {
@@ -134,56 +1404,99 @@ button {
 }
 
 .welcome-icon {
-    width: 64px;
-    height: 64px;
-    font-size: 30px;
+    width: 76px;
+    height: 76px;
+    font-size: 32px;
+    animation: latido 2.2s ease-in-out infinite;
 }
 
 .welcome h2 {
-    font-size: 26px;
+    font-size: 28px;
 }
 
 .welcome p {
-    color: #777777;
-    line-height: 1.6;
+    color: var(--gris);
+    max-width: 460px;
 }
 
-/* Clases que usará JavaScript */
+.sugerencias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.sugerencia {
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--gris-claro);
+    font-size: 14px;
+    transition: var(--transicion);
+}
+
+.sugerencia:hover {
+    border-color: var(--oro);
+    color: var(--oro);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.15);
+}
+
+/* Mensajes que crea js/app.js */
 
 .message {
     max-width: 85%;
     width: fit-content;
     padding: 14px 18px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     border-radius: 18px;
     line-height: 1.6;
     overflow-wrap: anywhere;
     white-space: pre-wrap;
+    animation: aparecer-mensaje 0.35s ease;
+}
+
+@keyframes aparecer-mensaje {
+    from { opacity: 0; transform: translateY(10px) scale(0.98); }
+    to { opacity: 1; transform: none; }
 }
 
 .message.user {
     margin-left: auto;
-    background: #eee8ff;
+    background: linear-gradient(135deg, var(--azul-claro), var(--azul));
+    color: var(--blanco);
     border-bottom-right-radius: 5px;
+    box-shadow: 0 8px 20px rgba(0, 102, 177, 0.3);
 }
 
-.message.assistant {
+.message.assistant,
+.message.bot,
+.message.model {
     margin-right: auto;
-    background: #f3f4f6;
+    background: var(--negro-2);
+    color: var(--gris-claro);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-left: 3px solid var(--oro);
     border-bottom-left-radius: 5px;
 }
 
-/* 6. Formulario */
-
 .chat-form {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     width: min(800px, calc(100% - 48px));
     margin: 0 auto;
     padding: 8px;
-    border: 1px solid #dddddd;
-    border-radius: 16px;
-    box-shadow: 0 3px 15px #00000008;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    background: var(--negro-2);
+    transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+
+.chat-form:focus-within {
+    border-color: var(--oro);
+    box-shadow: 0 0 0 4px var(--oro-suave);
 }
 
 .chat-form input {
@@ -193,24 +1506,38 @@ button {
     outline: none;
     padding: 12px;
     background: transparent;
+    color: var(--blanco);
+}
+
+.chat-form input::placeholder {
+    color: var(--gris);
 }
 
 .chat-form button {
-    padding: 12px 20px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 10px;
-    background: #7052c8;
-    color: white;
+    border-radius: 12px;
+    background: var(--oro);
+    color: var(--negro);
+    font-weight: 700;
+    transition: transform var(--transicion), box-shadow var(--transicion);
 }
 
 .chat-form button:hover {
-    background: #5b40ae;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px var(--oro-brillo);
+}
+
+.chat-form button:disabled {
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
 }
 
 .disclaimer {
-    padding: 14px 12px 18px;
+    padding: 12px 12px 16px;
     text-align: center;
-    color: #888888;
+    color: var(--gris);
     font-size: 12px;
 }
 
@@ -222,9 +1549,105 @@ button {
     clip-path: inset(50%);
 }
 
-/* 7. Adaptación a celulares */
+/* 16. Adaptación a tablets y celulares */
 
-@media (max-width: 600px) {
+@media (max-width: 980px) {
+    .grilla-servicios,
+    .datos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grilla-3 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-grilla {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .menu-boton {
+        display: grid;
+    }
+
+    .nav {
+        position: absolute;
+        top: var(--alto-header);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 20px 20px;
+        background: rgba(11, 12, 15, 0.97);
+        border-bottom: 1px solid rgba(255, 215, 0, 0.25);
+        transform: translateY(-10px);
+        opacity: 0;
+        pointer-events: none;
+        transition: var(--transicion);
+    }
+
+    .nav a {
+        padding: 14px 6px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav a::after {
+        left: 6px;
+        right: auto;
+        width: 40px;
+    }
+
+    .nav a.nav-chat {
+        margin: 14px 0 0;
+        text-align: center;
+    }
+
+    .menu-check:checked ~ .nav {
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .menu-check:checked + .menu-boton span {
+        background: transparent;
+    }
+
+    .menu-check:checked + .menu-boton span::before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+
+    .menu-check:checked + .menu-boton span::after {
+        top: 0;
+        transform: rotate(-45deg);
+    }
+}
+
+@media (max-width: 700px) {
+    .seccion {
+        padding: 64px 0;
+    }
+
+    .grilla-2,
+    .grilla-3,
+    .grilla-servicios {
+        grid-template-columns: 1fr;
+    }
+
+    .datos {
+        margin-top: 30px;
+    }
+
+    .cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 26px;
+    }
+
+    .footer-grilla {
+        grid-template-columns: 1fr;
+    }
+
     .sidebar {
         display: none;
     }
@@ -247,6 +1670,20 @@ button {
     }
 
     .chat-form button {
-        padding: 12px;
+        padding: 12px 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .revelar {
+        opacity: 1;
+        transform: none;
     }
 }
