@@ -1,5 +1,53 @@
 //este archivo sirve para manejar las solicitudes de chat y generar respuestas utilizando la API de Gemini de Google.
 const { GoogleGenAI } = require("@google/genai");
+const fs = require("fs");
+const path = require("path");
+
+// Lee el archivo base_de_conocimiento.csv (está en esta misma carpeta api)
+// y lo convierte en texto con una línea por vehículo para agregarlo al final del system prompt.
+function cargarBaseDeConocimiento() {
+  const rutaCsv = path.join(__dirname, "base_de_conocimiento.csv");
+  const contenido = fs.readFileSync(rutaCsv, "utf-8");
+  const filas = contenido.trim().split("\n");
+  let texto = "";
+
+  // Empieza en 1 para saltear la primera fila, que tiene los títulos
+  for (let i = 1; i < filas.length; i++) {
+    const fila = filas[i].trim();
+
+    if (fila === "") {
+      continue;
+    }
+
+    const datos = fila.split(",");
+    const tipo = datos[0];
+    const marca = datos[1];
+    const modelo = datos[2];
+    const carroceria = datos[3];
+    const anio = datos[4];
+    const km = datos[5];
+    const colores = datos[6].split(" / ").join(", ");
+    const stock = datos[7];
+    const precio = datos[8];
+
+    let unidades = stock + " unidades";
+    if (stock === "1") {
+      unidades = "1 unidad";
+    }
+
+    if (tipo === "0km") {
+      texto += "- " + marca + " " + modelo + " 0km (modelo " + anio + ") - " + carroceria + ". Colores disponibles: " + colores + ". Stock: " + unidades + ". Precio desde USD " + precio + ".\n";
+    } else {
+      texto += "- " + marca + " " + modelo + " usado (" + anio + ", " + km + "km) - " + carroceria + ". Color " + colores + ". Stock: " + unidades + ". Precio USD " + precio + ".\n";
+    }
+  }
+
+  return texto;
+}
+
+// Se carga una sola vez cuando arranca la función, no en cada mensaje
+const baseDeConocimiento = cargarBaseDeConocimiento();
+
 // Configuración de la instancia de GoogleGenAI con la clave de API almacenada en las variables de entorno
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY
@@ -90,22 +138,7 @@ module.exports = async (req, res) => {
           - Respondé siempre en texto plano, sin formatos de negrita, ni cursiva, ni subrayado.
 
           Base de conocimiento:
-          - BMW Serie 1 (118i) 0km (modelo 2026) - Hatchback. Colores disponibles: Blanco Alpino, Negro Zafiro, Gris Mineral. Stock: 4 unidades. Precio desde USD 38.900.
-          - BMW Serie 3 (320i) 0km (modelo 2026) - Sedán. Colores disponibles: Blanco Alpino, Negro Zafiro, Azul Portimao, Gris Mineral. Stock: 3 unidades. Precio desde USD 52.300.
-          - BMW X1 (sDrive20i) 0km (modelo 2026) - SUV compacta. Colores disponibles: Blanco Alpino, Negro Zafiro, Gris Skyscraper. Stock: 5 unidades. Precio desde USD 49.800.
-          - BMW X3 (xDrive30i) 0km (modelo 2026) - SUV mediana. Colores disponibles: Negro Zafiro, Blanco Alpino, Gris Mineral, Azul Phytonic. Stock: 3 unidades. Precio desde USD 68.500.
-          - BMW X5 (xDrive40i) 0km (modelo 2026) - SUV grande. Colores disponibles: Negro Zafiro, Blanco Alpino, Gris Carbono. Stock: 2 unidades. Precio desde USD 94.700.
-          - BMW M3 Competition 0km (modelo 2026) - Sedán deportivo. Colores disponibles: Verde Isle of Man, Azul Portimao, Negro Zafiro, Blanco Alpino. Stock: 2 unidades. Precio desde USD 139.900.
-          - BMW M5 0km (modelo 2026) - Sedán deportivo híbrido enchufable. Colores disponibles: Verde Isle of Man, Gris Brooklyn, Negro Zafiro, Blanco Alpino. Stock: 1 unidad. Precio desde USD 189.900.
-          - BMW M8 Competition Coupé 0km (modelo 2026) - Coupé deportivo. Colores disponibles: Azul Marina Bay, Gris Brands Hatch, Negro Zafiro. Stock: 1 unidad. Precio desde USD 214.900.
-          - BMW Serie 1 118i usado (2022, 35.000km) - color Blanco Alpino. Stock: 1 unidad. Precio USD 29.900.
-          - BMW X1 sDrive20i usado (2023, 18.000km) - color Gris Mineral. Stock: 1 unidad. Precio USD 41.500.
-          - BMW Serie 3 320i usado (2021, 42.000km) - color Negro Zafiro. Stock: 1 unidad. Precio USD 36.700.
-          - Mercedes-Benz SL500 usado (2008, 98.000km) - color Plata Iridio. Stock: 1 unidad. Precio USD 44.900.
-          - Audi A3 Sportback 1.4 TFSI usado (2017, 86.000km) - color Blanco Ibis. Stock: 1 unidad. Precio USD 19.900.
-          - Audi A5 Sportback 2.0 TFSI usado (2016, 112.000km) - color Gris Daytona. Stock: 1 unidad. Precio USD 27.500.
-          - BMW M4 CSL usado (2023, 4.800km) - color Gris Frozen Brooklyn. Stock: 1 unidad. Precio USD 189.000.
-          - BMW i8 Roadster usado (2020, 9.500km) - color Blanco Cristal. Stock: 1 unidad. Precio USD 129.000.
+          ${baseDeConocimiento}
         `
       },
       contents: message

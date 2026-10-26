@@ -1,0 +1,17 @@
+tipo,marca,modelo,carroceria,anio,km,colores,stock,precio
+0km,BMW,Serie 1 (118i),Hatchback,2026,0,Blanco Alpino / Negro Zafiro / Gris Mineral,4,38.900
+0km,BMW,Serie 3 (320i),Sedán,2026,0,Blanco Alpino / Negro Zafiro / Azul Portimao / Gris Mineral,3,52.300
+0km,BMW,X1 (sDrive20i),SUV compacta,2026,0,Blanco Alpino / Negro Zafiro / Gris Skyscraper,5,49.800
+0km,BMW,X3 (xDrive30i),SUV mediana,2026,0,Negro Zafiro / Blanco Alpino / Gris Mineral / Azul Phytonic,3,68.500
+0km,BMW,X5 (xDrive40i),SUV grande,2026,0,Negro Zafiro / Blanco Alpino / Gris Carbono,2,94.700
+0km,BMW,M3 Competition,Sedán deportivo,2026,0,Verde Isle of Man / Azul Portimao / Negro Zafiro / Blanco Alpino,2,139.900
+0km,BMW,M5,Sedán deportivo híbrido enchufable,2026,0,Verde Isle of Man / Gris Brooklyn / Negro Zafiro / Blanco Alpino,1,189.900
+0km,BMW,M8 Competition Coupé,Coupé deportivo,2026,0,Azul Marina Bay / Gris Brands Hatch / Negro Zafiro,1,214.900
+usado,BMW,Serie 1 118i,Hatchback,2022,35.000,Blanco Alpino,1,29.900
+usado,BMW,X1 sDrive20i,SUV compacta,2023,18.000,Gris Mineral,1,41.500
+usado,BMW,Serie 3 320i,Sedán,2021,42.000,Negro Zafiro,1,36.700
+usado,Mercedes-Benz,SL500,Convertible,2008,98.000,Plata Iridio,1,44.900
+usado,Audi,A3 Sportback 1.4 TFSI,Hatchback,2017,86.000,Blanco Ibis,1,19.900
+usado,Audi,A5 Sportback 2.0 TFSI,Coupé de 5 puertas,2016,112.000,Gris Daytona,1,27.500
+usado,BMW,M4 CSL,Coupé deportivo,2023,4.800,Gris Frozen Brooklyn,1,189.000
+usado,BMW,i8 Roadster,Convertible deportivo híbrido enchufable,2020,9.500,Blanco Cristal,1,129.000
